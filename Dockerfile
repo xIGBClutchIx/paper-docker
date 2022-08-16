@@ -1,14 +1,16 @@
 FROM mcr.microsoft.com/openjdk/jdk:17-ubuntu
 
+WORKDIR /opt/minecraft/
+
 RUN apt update -y
 RUN apt install wget zip unzip tar -y
 RUN apt upgrade -y
 
-RUN wget -P /opt/minecraft/ https://github.com/ServerJars/updater/releases/download/v3.2.1/ServerJars.jar
-RUN echo "eula=true" > /opt/minecraft/eula.txt
+RUN wget https://github.com/ServerJars/updater/releases/download/v3.2.1/ServerJars.jar
+RUN chmod +x ServerJars.jar
+RUN echo "eula=true" > eula.txt
 
-RUN mkdir -p /opt/minecraft
-COPY serverjars.properties /opt/minecraft/
+COPY serverjars.properties .
 
 EXPOSE 25565/tcp
 
