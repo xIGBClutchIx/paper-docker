@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/openjdk/jdk:17-ubuntu
 
-WORKDIR /opt/minecraft/
+WORKDIR /opt/game/
 
 RUN apt update -y
 RUN apt install wget zip unzip tar -y
@@ -14,6 +14,6 @@ COPY serverjars.properties .
 
 EXPOSE 25565/tcp
 
-VOLUME ["/opt/minecraft"]
+VOLUME ["/opt/game"]
 
 CMD ["java", "-jar", "ServerJars.jar"]
